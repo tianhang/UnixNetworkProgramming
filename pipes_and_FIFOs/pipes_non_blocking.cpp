@@ -10,6 +10,7 @@ int main()
 	pid_t pid;
 	//fd[0] read
 	//fd[1] write	 
+	pid = fork();
 	if(pid > 0){
 		close(fd[0]);
 		sleep(5);
