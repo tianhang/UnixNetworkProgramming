@@ -27,7 +27,8 @@ int get_filesize(char *filename)
 	close(fd);
 	return curr;
 }
-
+// if using this method, can not return correct mmap address , maybe cause the function
+// stack has been released
 void mmap_file(char *filename,char *mapaddress)
 {
 	int fd = open(filename,O_RDWR);
@@ -132,9 +133,6 @@ int main(int arg,char *argv[])
 
 
 
-	 size2 = get_filesize(filename2);
-	cout<<"size1:"<<size<<endl;
-	cout<<"size2:"<<size2<<endl;
 	close(fd2);
 
 	int num = 10;
@@ -162,6 +160,11 @@ int main(int arg,char *argv[])
 		printf("err:%d\n",err);
 	
 	}
+
+	sleep(2);
+ 	size2 = get_filesize(filename2);
+	cout<<"size1:"<<size<<endl;
+	cout<<"size2:"<<size2<<endl;
 
 	sleep(2);
 //	printf("err:%d\n",err);
